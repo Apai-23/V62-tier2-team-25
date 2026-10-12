@@ -6,6 +6,7 @@ import LoginPage from "./Pages/LoginPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import SignupPage from "./Pages/SignupPage";
 import { QuestionsPage } from "./Pages/QuestionsPage";
+import UserProfile from "./Pages/userProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/register" element={<SignupPage />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </div>
   );
