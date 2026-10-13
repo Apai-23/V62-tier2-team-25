@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
   functions = "netlify/functions"
 
 # Esto asegura que React Router maneje las rutas del cliente correctamente
@@ -8,3 +11,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  
