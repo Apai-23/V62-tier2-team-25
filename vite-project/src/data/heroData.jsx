@@ -8,11 +8,3 @@ export const HERO_CONTENT = {
   secondaryAction: "Continue as guest",
 };
 
-export const CAREER_ASSESSMENT_CONTENT = {
-  headline: "Stop guessing what",
-  highlightedText: "what-to-learn",
-  headlineEnd: "next",
-  description: "We'll turn your answers into a personalized learning path",
-  ctaButton: "Career assessment",
-  disclaimer: "Takes 2 minutes • No credit card needed",
-};
