@@ -4,7 +4,6 @@
 
 [functions]
   directory = "netlify/functions"
-  functions = "netlify/functions"
 
 # Esto asegura que React Router maneje las rutas del cliente correctamente
 [[redirects]]
