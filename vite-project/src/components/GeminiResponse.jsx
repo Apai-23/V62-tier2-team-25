@@ -118,7 +118,7 @@ const GeminiResponse = () => {
 
   return (
     <div className="max-w-[1206px] mx-auto px-6 py-8 text-slate-900 font-sans">
-      <div className="absolute top-6 left-6">
+      <div className="mb-6 flex justify-start">
         <Link
           to="/"
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
