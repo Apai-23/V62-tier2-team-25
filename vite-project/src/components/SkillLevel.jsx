@@ -1,26 +1,26 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from "react";
 
-const SkillContext = createContext()
+const SkillContext = createContext();
 
-export default function SkillLevel ({children, ...props}) {
-  const { value, onChange } = useContext(SkillContext)
+export default function SkillLevel({ children, ...props }) {
+  const { value, onChange } = useContext(SkillContext);
 
-  const isSelected = value == props.value
+  const isSelected = value == props.value;
 
   const handleClick = (e) => {
     if (isSelected) {
-      e.preventDefault()
-      onChange({ target: { value: "" } })
+      e.preventDefault();
+      onChange({ target: { value: "" } });
     }
-  }
+  };
 
   return (
     <label
-     name="level"
+      name="level"
       onClick={handleClick}
-      className={`p-2 md:px-5 md:py-4 rounded-2xl cursor-pointer border-2 hover:bg-black hover:text-white transition-all ${
+      className={`p-2 md:px-5 md:py-4 rounded-2xl cursor-pointer border-2 transition-all ${
         value == props.value
-          ? "bg-black text-white"
+          ? "bg-[#337563] text-white"
           : "bg-white text-black border-gray-500"
       }`}
     >
@@ -37,8 +37,11 @@ export default function SkillLevel ({children, ...props}) {
   );
 }
 
-export function SkillGroup({ value, onChange, children}) {
- return(
-   <SkillContext.Provider value={{ value, onChange}}> {children} </SkillContext.Provider>
- )
+export function SkillGroup({ value, onChange, children }) {
+  return (
+    <SkillContext.Provider value={{ value, onChange }}>
+      {" "}
+      {children}{" "}
+    </SkillContext.Provider>
+  );
 }

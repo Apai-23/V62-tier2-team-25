@@ -9,7 +9,8 @@ const LearningPathPage = () => {
   const context = useAppContext();
 
   const isAuthenticated = Boolean(
-    localStorage.getItem("authToken") || localStorage.getItem("isAuthenticated")
+    localStorage.getItem("authToken") ||
+    localStorage.getItem("isAuthenticated"),
   );
 
   const [formData, setFormData] = useState({
@@ -259,11 +260,10 @@ const LearningPathPage = () => {
           <div>
             <button
               type="submit"
-              className="w-full py-4 mt-8 mx-auto rounded-2xl bg-black text-lg text-center text-white cursor-pointer"
+              className="w-full py-4 mt-8 mx-auto rounded-2xl bg-[#337563] text-lg text-center text-white cursor-pointer"
             >
               <div className="flex items-center justify-center gap-2">
-                <img src={GenerateIcon} alt="icon" />
-                Continue
+                Next Step
               </div>
             </button>
           </div>

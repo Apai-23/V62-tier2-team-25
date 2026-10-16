@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import GenerateIcon from "../assets/icon-generate.png";
 import { askGemini } from "./../api/geminiAI";
-import ReactMarkdown from "react-markdown";
 import { useAppContext } from "./../context/UserContext";
 
 function Gemini() {
@@ -107,18 +106,25 @@ IMPORTANT:
 
   return (
     <div className="flex flex-col items-center text-left justify-center">
-      <div className="container mx-auto px-4 py-8 mt-10 mb-12">
-        <button
-          type="button"
-          className="w-full max-w-md py-4 mt-8 mx-auto rounded-2xl bg-black text-lg text-center text-white flex items-center justify-center gap-2 disabled:opacity-60"
-          onClick={handleSubmit}
-          disabled={loading || !questionnaire?.length}
-        >
-          <img src={GenerateIcon} alt="icon" />
-          {loading ? "Generating..." : "Generate learning path"}
-        </button>
-      </div>
-      <ReactMarkdown>{response}</ReactMarkdown>
+      {loading === true ? (
+        <div className="flex flex-col items-center justify-center text-center mx-auto px-4 py-8 mt-10 mb-12">
+          <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-emerald-600 border-t-transparent"></div>
+          <h1 className="mt-4 text-xl font-semibold text-slate-800">
+            Creating your career path...
+          </h1>
+        </div>
+      ) : (
+        <div className="container mx-auto px-4 py-8 mt-10 mb-12">
+          <button
+            type="button"
+            className="w-full max-w-md py-4 mt-8 mx-auto rounded-2xl bg-[#337563] text-lg text-center text-white flex items-center justify-center gap-2 disabled:opacity-60 hover:cursor-pointer"
+            onClick={handleSubmit}
+            disabled={loading || !questionnaire?.length}
+          >
+            Generate learning path
+          </button>
+        </div>
+      )}
     </div>
   );
 }
