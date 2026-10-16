@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "./../context/UserContext";
 import { Link } from "react-router-dom";
+import Gemini from "./GeminiPrompt";
 
 // const parseGeminiJson = (rawResponse) => {
 //   if (!rawResponse || typeof rawResponse !== "string") return null;
@@ -35,8 +36,8 @@ const fallbackResources = [
 
 const GeminiResponse = () => {
   const { response, loading } = useAppContext();
-  
-const [completedStages, setCompletedStages] = useState(() => {
+
+  const [completedStages, setCompletedStages] = useState(() => {
     const saved = sessionStorage.getItem("completedStages");
     return saved ? JSON.parse(saved) : [];
   });
@@ -47,7 +48,10 @@ const [completedStages, setCompletedStages] = useState(() => {
 
   useEffect(() => {
     if (response) {
-      sessionStorage.setItem("ai_path_response", typeof response === "string" ? response : JSON.stringify(response));
+      sessionStorage.setItem(
+        "ai_path_response",
+        typeof response === "string" ? response : JSON.stringify(response),
+      );
     }
   }, [response]);
 
@@ -91,12 +95,10 @@ const [completedStages, setCompletedStages] = useState(() => {
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-xl font-semibold text-slate-800">
-            Your personalized path
+            Gemini AI is experiencing high demand. Please generate the path
+            again or try again later.
           </h2>
-          <p className="mt-4 text-slate-600">
-            We could not parse the AI response yet. Please generate the path
-            again.
-          </p>
+          <Gemini />
         </div>
       </div>
     );
@@ -117,26 +119,26 @@ const [completedStages, setCompletedStages] = useState(() => {
   return (
     <div className="max-w-[1206px] mx-auto px-6 py-8 text-slate-900 font-sans">
       <div className="absolute top-6 left-6">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
+        >
+          <svg
+            className="w-4 h-4 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <svg
-              className="w-4 h-4 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-              />
-            </svg>
-            Home
-          </Link>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            />
+          </svg>
+          Home
+        </Link>
+      </div>
 
       <div className="rounded-[18px] bg-[black] px-6 py-5 text-white shadow-xl">
         <p className="text-base font-medium text-slate-200">
@@ -176,7 +178,6 @@ const [completedStages, setCompletedStages] = useState(() => {
         </h2>
 
         <div className="relative ml-3 border-l-2 border-slate-300 pl-8">
-
           {stages.map((stage, index) => {
             const isCompleted = completedStages.includes(index);
 
@@ -194,14 +195,16 @@ const [completedStages, setCompletedStages] = useState(() => {
                       : `Mark ${stage.title} as complete`
                   }
                   aria-pressed={isCompleted}
-                  className={`absolute -left-[3.65rem] top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full text-base font-bold text-white shadow-sm transition-all duration-300 hover:scale-105 focus-visible:outline-none ${isCompleted ? "bg-[#27665C]" : "bg-black"
-                    }`}
+                  className={`absolute -left-[3.65rem] top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full text-base font-bold text-white shadow-sm transition-all duration-300 hover:scale-105 focus-visible:outline-none ${
+                    isCompleted ? "bg-[#27665C]" : "bg-black"
+                  }`}
                 >
                   {isCompleted ? "✓" : index + 1}
                 </button>
                 <div
-                  className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out ${isCompleted ? "opacity-40" : "opacity-100"
-                    }`}
+                  className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out ${
+                    isCompleted ? "opacity-40" : "opacity-100"
+                  }`}
                 >
                   <div className="mb-3 text-sm text-slate-500">
                     {stage.weekLabel || `Week ${index + 1}`}

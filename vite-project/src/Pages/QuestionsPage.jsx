@@ -83,7 +83,7 @@ export const QuestionsPage = () => {
   // SCREEN A: Success Screen
   if (isSubmitted) {
     return (
-      <div className="max-w-xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div className="w-xs sm:w-md md:w-xl mx-auto mt-50 p-8 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
         <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
           ✓
         </div>
@@ -91,16 +91,10 @@ export const QuestionsPage = () => {
           Submission Successful!
         </h2>
         <p className="text-gray-600 mb-6">Your answers have been stored.</p>
+        <p className="text-gray-600 mb-6">
+          You may now generate a learning path by clicking below!
+        </p>
         <Gemini />
-        {/* <pre className="text-left text-xs bg-gray-800 text-green-400 p-4 rounded-xl overflow-x-auto mb-6">
-          {JSON.stringify(finalPayload, null, 2)}
-        </pre> */}
-        {/* <button
-          onClick={handleRestart}
-          className="px-6 py-2 bg-gray-800 text-white font-medium rounded-lg hover:bg-gray-700 transition"
-        >
-          Try Again
-        </button> */}
       </div>
     );
   }
@@ -128,7 +122,7 @@ export const QuestionsPage = () => {
             </svg>
             Back
           </Link>
-          
+
           {/* PROGRESS BAR  */}
           <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 mb-18">
             <div className="w-full md:w-261 bg-[#9D9B9B] rounded-full h-8">
@@ -176,7 +170,7 @@ export const QuestionsPage = () => {
                       <p className="text-lg font-semibold text-gray-800 mb-1">
                         {q.id}. {q.question}
                       </p>
-                      <p className="text-sm text-blue-600 font-medium bg-blue-50/50 inline-block px-2.5 py-0.5 rounded border border-blue-100">
+                      <p className="text-sm text-[#337563] font-medium bg-blue-50/50 inline-block px-2.5 py-0.5 rounded border border-blue-100">
                         Selected: {selectedOpt ? selectedOpt.text : "None"}
                       </p>
                     </div>
@@ -187,13 +181,13 @@ export const QuestionsPage = () => {
               <div className="flex space-x-4">
                 <button
                   onClick={handlePrev}
-                  className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-700 font-medium hover:bg-gray-50 transition"
+                  className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl text-gray-700 font-medium bg-white hover:cursor-pointer hover:bg-gray-50 transition"
                 >
                   Go Back & Change
                 </button>
                 <button
                   onClick={handleSubmitQuiz}
-                  className="flex-1 px-4 py-3 bg-green-600 text-white font-medium rounded-xl hover:bg-green-700 shadow-md transition"
+                  className="flex-1 px-4 py-3 bg-[#337563] text-white font-medium rounded-xl hover:cursor-pointer shadow-md transition"
                 >
                   Submit Answers
                 </button>
@@ -227,11 +221,11 @@ export const QuestionsPage = () => {
                   return (
                     <label
                       key={option.id}
-                      className={`flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all select-none
+                      className={`flex items-center p-6 rounded-xl border-2 cursor-pointer transition-all select-none
                               ${
                                 isChecked
-                                  ? "border-[#337563] bg-[#E2ECDA] text-[#337563] font-medium"
-                                  : "border-gray-400 bg-white text-gray-600 hover:border-gray-600 hover:bg-gray-50/50"
+                                  ? "border-[#337563] bg-[#337563] text-white font-medium"
+                                  : "border-gray-400 bg-white text-black hover:border-gray-600 hover:bg-gray-50/50"
                               }
                             `}
                     >
@@ -265,7 +259,7 @@ export const QuestionsPage = () => {
                 {currentSelection && (
                   <button
                     onClick={handleNext}
-                    className="px-6 py-2.5 bg-black text-white text-lg font-medium rounded-xl hover:bg-black shadow-lg curp transition"
+                    className="px-6 py-2.5 bg-[#337563] text-white text-lg font-medium rounded-xl hover:cursor-pointer shadow-lg curp transition"
                   >
                     {currentIndex === totalQuestions - 1
                       ? "Review Answers"
