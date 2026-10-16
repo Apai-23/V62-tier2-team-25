@@ -94,7 +94,7 @@ const GeminiResponse = () => {
     return (
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-xl font-semibold text-slate-800">
+          <h2 className="text-xl font-semibold text-slate-800 flex flex-col items-center text-center justify-center mt-10">
             Gemini AI is experiencing high demand. Please generate the path
             again or try again later.
           </h2>
